@@ -1,4 +1,3 @@
-// Required for react-leaflet to work with create-react-app
 module.exports = function override(config, env) {
   config.resolve.fallback = {
     ...config.resolve.fallback,
