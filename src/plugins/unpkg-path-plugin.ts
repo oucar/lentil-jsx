@@ -31,6 +31,7 @@ export const unpkgPathPlugin = () => {
         console.log('onLoad', args);
 
         if (args.path === 'index.js') {
+          // Also allows package versioning
           return {
             loader: 'jsx',
             contents: `

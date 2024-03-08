@@ -27,6 +27,11 @@ function App() {
       bundle: true,
       write: false,
       plugins: [unpkgPathPlugin()],
+      // whenever you see process.env.NODE_ENV, replace it with "production"
+      define: {
+        'process.env.NODE_ENV': '"production"',
+        global: 'window',
+      },
     });
 
     // console.log(result);
