@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { unpkgPathPlugin } from './plugins/unpkg-path-plugin';
 import * as esbuild from 'esbuild-wasm';
+import { fetchPlugin } from './plugins/fetch-plugin';
 
 function App() {
   const ref = useRef<any>();
@@ -27,7 +28,7 @@ function App() {
       entryPoints: ['index.js'],
       bundle: true,
       write: false,
-      plugins: [unpkgPathPlugin(input)],
+      plugins: [unpkgPathPlugin(), fetchPlugin(input)],
       // whenever you see process.env.NODE_ENV, replace it with "production"
       define: {
         'process.env.NODE_ENV': '"production"',
