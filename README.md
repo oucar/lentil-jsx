@@ -13,7 +13,7 @@
 - Bundler: read the contents of the entry file, then recursively read the contents of all the files that are imported by the entry file, then read the contents of all the files that are imported by those files, and so on, until it has a complete list of all the files that are needed by the application. Then it combines all of those files into a single file, which is the bundle.
 - Transpiling locally: the code is transpiled on the client's machine. Faster code exectution, but slower initial load time. No need to maintain an API server. Less complexity!! What I'll be using. (explain further in the future)
 - Raw User Code --> ESBuild (Replaces what Babel and Webpack do) --> Bundle --> Browser: https://esbuild.github.io/ - 100x faster than Webpack and Babel. EsBuild uses Go.
-
+- Once files are downloaded to the cache, they don't need to be downloaded again, unless the user wants to reset his development environment for some reason. The cache is stored in the browser's local storage. 
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
