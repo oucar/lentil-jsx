@@ -22,11 +22,12 @@ function App() {
       return;
     }
 
+    // starting the bundling process
     const result = await ref.current.build({
       entryPoints: ['index.js'],
       bundle: true,
       write: false,
-      plugins: [unpkgPathPlugin()],
+      plugins: [unpkgPathPlugin(input)],
       // whenever you see process.env.NODE_ENV, replace it with "production"
       define: {
         'process.env.NODE_ENV': '"production"',
