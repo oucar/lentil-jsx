@@ -16,6 +16,7 @@
 - Once files are downloaded to the cache, they don't need to be downloaded again, unless the user wants to reset his development environment for some reason. The cache is stored in the browser's local storage. 
 - Will be using IFrames, so that the user's code doesn't interfere with the code of the development environment. A great way to isolate the user's code from the development environment's code! (Different domains, different access to the DOM)
 - Reload iframe sandbox='' --> users cannot reach localStorage, cookies and parent window.
+- Using Monaco Editor for web-based code editing. https://microsoft.github.io/monaco-editor/
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
