@@ -5,7 +5,7 @@ import MonacoEditor, { EditorDidMount } from "@monaco-editor/react";
 import prettier from "prettier";
 import parser from "prettier/parser-babel";
 import codeShift from 'jscodeshift';
-import Highlighter from 'monaco-jsx-highlighter';
+import MonacoJSXHighlighter from 'monaco-jsx-highlighter';
 
 // @@TODO: Add a feature so that similar to VSCODE
 // Same shortcut beautifies the code
@@ -25,7 +25,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ onChange, initialValue }) => {
 
     monacoEditor.getModel()?.updateOptions({ tabSize: 2 });
 
-    const highlighter = new Highlighter(
+    const highlighter = new MonacoJSXHighlighter(
       // @ts-ignore
       window.monaco,
       codeShift,

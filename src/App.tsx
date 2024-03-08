@@ -36,7 +36,7 @@ function App() {
       plugins: [unpkgPathPlugin(), fetchPlugin(input)],
       // whenever you see process.env.NODE_ENV, replace it with "production"
       define: {
-        // "production": "",
+        'process.env.NODE_ENV': '"process.env.NODE_ENV"',
         global: "window",
       },
     });
