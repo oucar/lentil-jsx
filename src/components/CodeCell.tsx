@@ -7,13 +7,17 @@ import Resizable from "./Resizable";
 const CodeCell = () => {
   const [code, setCode] = useState("");
   const [input, setInput] = useState("");
+  const [error, setError] = useState("");
 
   // Bundle the code every 1000 ms, only if the input has changed
   // @@TODO: Add a loading spinner, and possibly allow a greater delay before bundling
   useEffect(() => {
     const timer = setTimeout(async () => {
+
+      // output = { code: string, error: string }
       const output = await bundle(input);
-      setCode(output);
+      setCode(output.code);
+      setError(output.error);
     }, 1000);
 
     // when you return a function from useEffect, it will be called when the component is about to be re-rendered
@@ -33,7 +37,7 @@ const CodeCell = () => {
             onChange={(value) => setInput(value)}
           />
         </Resizable>
-        <Preview code={code} />
+        <Preview code={code} bundlingError={error}/>
       </div>
     </Resizable>
   );

@@ -3,8 +3,10 @@ import "./styles/preview.css";
 
 interface PreviewProps {
   code: string;
+  bundlingError: string;
 }
 
+// @@TODO: Extract the html into a separate file
 const html = `
     <html>
       <head>
@@ -13,13 +15,23 @@ const html = `
       <body>
         <div id="root"></div>
         <script>
+
+          // Runtime Error
+          const handleError = (err) => {
+            const root = document.querySelector('#root');
+            root.innerHTML = '<div style="color: red;"><h4>Runtime Error</h4>' + err + '</div>';
+            console.error(err);
+          };
+          // event listener for error handling - handles async errors
+          window.addEventListener('error', (event) => {
+            event.preventDefault();
+            handleError(event.error);
+          });
           window.addEventListener('message', (event) => {
             try {
               eval(event.data);
             } catch (err) {
-              const root = document.querySelector('#root');
-              root.innerHTML = '<div style="color: red;"><h4>Runtime Error</h4>' + err + '</div>';
-              console.error(err);
+              handleError(err);
             }
           }, false);
         </script>
@@ -27,7 +39,7 @@ const html = `
     </html>
   `;
 
-const Preview: React.FC<PreviewProps> = ({ code }) => {
+const Preview: React.FC<PreviewProps> = ({ code, bundlingError }) => {
   const iframe = useRef<any>();
 
   // whenever the code changes, we want to rerun the bundling process
@@ -49,7 +61,10 @@ const Preview: React.FC<PreviewProps> = ({ code }) => {
         sandbox="allow-scripts"
         srcDoc={html}
       />
+          {/* Displaying the bundling errors */}
+          {bundlingError && <div className="preview-error">{bundlingError}</div>}
     </div>
+
   );
 };
 
