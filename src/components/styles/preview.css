@@ -1,0 +1,22 @@
+.preview-wrapper {
+  position: relative;
+  height: 100%;
+  flex-grow: 1;
+}
+
+.preview-wrapper iframe {
+    height: 100%;
+    width: 100%
+}
+
+/* These styles are only being applied once we start moving the resizer */
+/* @@TODO: Maybe instead of opacity, implement some sort of loading animation */
+.react-draggable-transparent-selection .preview-wrapper:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+}

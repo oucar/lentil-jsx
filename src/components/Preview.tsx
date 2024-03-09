@@ -1,4 +1,5 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect } from "react";
+import "./styles/preview.css";
 
 interface PreviewProps {
   code: string;
@@ -6,7 +7,9 @@ interface PreviewProps {
 
 const html = `
     <html>
-      <head></head>
+      <head>
+        <style>html { background-color: white; }</style>
+      </head>
       <body>
         <div id="root"></div>
         <script>
@@ -30,16 +33,18 @@ const Preview: React.FC<PreviewProps> = ({ code }) => {
   // whenever the code changes, we want to rerun the bundling process
   useEffect(() => {
     iframe.current.srcdoc = html;
-    iframe.current.contentWindow.postMessage(code, '*');
+    iframe.current.contentWindow.postMessage(code, "*");
   }, [code]);
 
   return (
-    <iframe
-      title="preview"
-      ref={iframe}
-      sandbox="allow-scripts"
-      srcDoc={html}
-    />
+    <div className="preview-wrapper">
+      <iframe
+        title="preview"
+        ref={iframe}
+        sandbox="allow-scripts"
+        srcDoc={html}
+      />
+    </div>
   );
 };
 
