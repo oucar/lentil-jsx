@@ -1,12 +1,11 @@
-import "bulmaswatch/superhero/bulmaswatch.min.css";
-import { useState } from "react";
-import CodeEditor from "./components/CodeEditor";
-import Preview from "./components/Preview";
-import bundle from "./bundler";
+import { useState } from 'react';
+import CodeEditor from './CodeEditor';
+import Preview from './Preview';
+import bundle from '../bundler';
 
-function App() {
-  const [input, setInput] = useState("");
-  const [code, setCode] = useState("");
+const CodeCell = () => {
+  const [code, setCode] = useState('');
+  const [input, setInput] = useState('');
 
   const onClick = async () => {
     const output = await bundle(input);
@@ -25,6 +24,6 @@ function App() {
       <Preview code={code} />
     </div>
   );
-}
+};
 
-export default App;
+export default CodeCell;
