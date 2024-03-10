@@ -4,9 +4,8 @@ import AddCell from "./AddCell";
 import { Fragment } from "react";
 
 const CellList: React.FC = () => {
-  const cells = useTypedSelector(({ cells: { order, data } }) =>
-    order.map((id) => data[id])
-  );
+  const { data, order } = useTypedSelector((state) => state.cells);
+  const cells = order.map((id) => data[id]);
 
   const renderedCells = cells.map((cell) => (
     <Fragment key={cell.id}>

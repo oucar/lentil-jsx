@@ -4,5 +4,9 @@ import { actionCreators } from "../state";
 
 export const useActions = () => {
   const dispatch = useDispatch();
-  return bindActionCreators(actionCreators, dispatch);
+  const boundActionCreators = bindActionCreators(actionCreators, dispatch);
+
+  console.log("Bound Action Creators:", boundActionCreators);
+
+  return boundActionCreators;
 };
