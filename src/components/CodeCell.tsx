@@ -3,19 +3,26 @@ import CodeEditor from "./CodeEditor";
 import Preview from "./Preview";
 import bundle from "../bundler";
 import Resizable from "./Resizable";
+import { Cell } from "../state";
+import { useActions } from "../hooks/use-actions";
 
-const CodeCell = () => {
+interface CodeCellProps {
+  cell: Cell;
+}
+
+const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
   const [code, setCode] = useState("");
-  const [input, setInput] = useState("");
   const [error, setError] = useState("");
+
+  const { updateCell } = useActions();
+
 
   // Bundle the code every 1000 ms, only if the input has changed
   // @@TODO: Add a loading spinner, and possibly allow a greater delay before bundling
   useEffect(() => {
     const timer = setTimeout(async () => {
-
       // output = { code: string, error: string }
-      const output = await bundle(input);
+      const output = await bundle(cell.content);
       setCode(output.code);
       setError(output.error);
     }, 1000);
@@ -25,19 +32,18 @@ const CodeCell = () => {
     return () => {
       clearTimeout(timer);
     };
-
-  }, [input]);
+  }, [cell.content]);
 
   return (
     <Resizable direction="vertical">
       <div style={{ height: "100%", display: "flex", flexDirection: "row" }}>
         <Resizable direction="horizontal">
           <CodeEditor
-            initialValue="const a = 1;"
-            onChange={(value) => setInput(value)}
+            initialValue={cell.content}
+            onChange={(value) => updateCell(cell.id, value)}
           />
         </Resizable>
-        <Preview code={code} bundlingError={error}/>
+        <Preview code={code} bundlingError={error} />
       </div>
     </Resizable>
   );
