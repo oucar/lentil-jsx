@@ -33,7 +33,7 @@ const TextEditor: React.FC = () => {
     };
   }, []);
 
-  //   toggle the editing state
+  // toggle the editing state
   if (editing) {
     return (
       <div className="text-editor" ref={ref}>
