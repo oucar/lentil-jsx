@@ -1,6 +1,7 @@
 import { ActionType } from "../action-types";
 import { Action } from "../actions";
 import { Cell } from "../cell";
+import produce from 'immer';
 
 interface CellsState {
   loading: boolean;
@@ -18,12 +19,12 @@ const initialState: CellsState = {
   data: {},
 };
 
-const reducer = (state: CellsState = initialState, action: Action) => {
+const reducer = produce((state: CellsState = initialState, action: Action) => {
   switch (action.type) {
     case ActionType.UPDATE_CELL:
       const { id, content } = action.payload;
       state.data[id].content = content;
-      return;
+      return state;
 
     case ActionType.DELETE_CELL:
       delete state.data[action.payload];
@@ -47,12 +48,13 @@ const reducer = (state: CellsState = initialState, action: Action) => {
 
       return state;
 
-    case ActionType.INSERT_CELL_BEFORE:
+    case ActionType.INSERT_CELL_AFTER:
       const cell: Cell = {
         content: "",
         type: action.payload.type,
         id: randomId(),
       };
+      
 
       state.data[cell.id] = cell;
 
@@ -60,18 +62,22 @@ const reducer = (state: CellsState = initialState, action: Action) => {
         (id) => id === action.payload.id
       );
 
+      // no cell with the id found
       if (foundIndex < 0) {
+        // add one to the head of the order array
         state.order.unshift(cell.id);
       } else {
-        state.order.splice(foundIndex, 0, cell.id);
+        state.order.splice(foundIndex + 1, 0, cell.id);
       }
+
+    // console.log(state.order);
 
       return state;
 
     default:
       return state;
   }
-};
+}, initialState);
 
 const randomId = () => {
   return Math.random().toString(36).substring(1, 10);
