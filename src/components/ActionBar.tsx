@@ -7,7 +7,6 @@ interface ActionBarProps {
 
 const ActionBar: React.FC<ActionBarProps> = ({ id }) => {
   const { moveCell, deleteCell } = useActions();
-  // console.log(deleteCell('123'));
 
   return (
     <div className="action-bar">

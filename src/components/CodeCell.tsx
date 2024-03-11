@@ -17,6 +17,7 @@ const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
   const { updateCell } = useActions();
 
 
+
   // Bundle the code every 1000 ms, only if the input has changed
   // @@TODO: Add a loading spinner, and possibly allow a greater delay before bundling
   useEffect(() => {

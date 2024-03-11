@@ -14,6 +14,8 @@ const TextEditor: React.FC<TextEditorProps> = ({ cell }) => {
 
   const { updateCell } = useActions();
 
+  // console.log(useActions)
+
   useEffect(() => {
     const listener = (event: MouseEvent) => {
       // clicking inside the text editor

@@ -5,6 +5,7 @@ import { store } from "./state";
 import CellList from "./components/CellList";
 
 function App() {
+
   return (
     <Provider store={store}>
       <div>
