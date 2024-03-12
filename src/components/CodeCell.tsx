@@ -6,6 +6,7 @@ import { Cell } from "../state";
 import { useActions } from "../hooks/use-actions";
 import { useTypedSelector } from "../hooks/use-typed-selector";
 import "./styles/codeCell.css";
+import { useCumulativeCode } from "../hooks/use-cumulative-code";
 
 interface CodeCellProps {
   cell: Cell;
@@ -14,19 +15,20 @@ interface CodeCellProps {
 const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
   const { updateCell, createBundle } = useActions();
   const bundle = useTypedSelector((state) => state.bundles[cell.id]);
+  const cumulativeCode = useCumulativeCode(cell.id);
 
   // Bundle the code every 1000 ms, only if the input has changed
   // @@TODO: Add a loading spinner, and possibly allow a greater delay before bundling
   useEffect(() => {
     // when we first load the app, we want to bundle the code immediately
     if (!bundle) {
-      createBundle(cell.id, cell.content);
+      createBundle(cell.id, cumulativeCode);
       return;
     }
 
     // when user starts the coce cell
     const timer = setTimeout(async () => {
-      createBundle(cell.id, cell.content);
+      createBundle(cell.id, cumulativeCode);
     }, 1000);
 
     // when you return a function from useEffect, it will be called when the component is about to be re-rendered
@@ -34,7 +36,7 @@ const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
     return () => {
       clearTimeout(timer);
     };
-  }, [cell.content, cell.id]);
+  }, [cumulativeCode, cell.id]);
 
   return (
     <Resizable direction="vertical">

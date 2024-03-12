@@ -25,6 +25,9 @@ const bundle = async (rawCode: string) => {
         "process.env.NODE_ENV": '"process.env.NODE_ENV"',
         global: "window",
       },
+      // Replacing the JSX syntax so that users can still import React and use JSX
+      jsxFactory: "_React.createElement",
+      jsxFragment: "_React.Fragment",
     });
     return {
       code: result.outputFiles[0].text,
