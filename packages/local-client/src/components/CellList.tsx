@@ -1,4 +1,4 @@
-import { useTypedSelector } from "../hooks/use-typed-selector.ts";
+import { useTypedSelector } from "../hooks/use-typed-selector";
 import CellListItem from "./CellListItem";
 import AddCell from "./AddCell";
 import { Fragment } from "react";
