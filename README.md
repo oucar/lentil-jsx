@@ -17,7 +17,13 @@
 - Will be using IFrames, so that the user's code doesn't interfere with the code of the development environment. A great way to isolate the user's code from the development environment's code! (Different domains, different access to the DOM)
 - Reload iframe sandbox='' --> users cannot reach localStorage, cookies and parent window.
 - Using Monaco Editor for web-based code editing. https://microsoft.github.io/monaco-editor/
+- Each project can specify another as dependency. (Lerna CLI - similar to Yarn and NPM workspaces)
+- When using lerna, do not use yarn or npm to install dependencies. Use lerna add <package-name> to add a dependency to a project.
+- Lerna documentation: https://lerna.js.org/
+- run `npm start` in the root directory to start the development environment, which will start the development environment for all the projects. (You might want to run `npm install` inside local-client first to install dependencies for the local-client project first. It will be fixed later.)
 
+# Brainstorming
+- Mongodb implementation for saving users' code, where users can share their codes and "notebooks" with others. 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
