@@ -25,8 +25,9 @@
 - @@TODO: local-client should be configured to work with lerna.
   - Current workaround: run `npm i --legacy-peer-deps` in local-client, then run `npm start` in the root directory.
 # Brainstorming
-- ~~Mongodb implementation for saving users' code, where users can share their codes and "notebooks" with others. 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.~~
+- ~~Mongodb implementation for saving users' code, where users can share their codes and "notebooks" with others.~~
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
 
