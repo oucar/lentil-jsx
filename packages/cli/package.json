@@ -10,10 +10,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/node": "^20.11.26",
     "commander": "^12.0.0",
     "local-api": "^1.0.0"
   },
   "devDependencies": {
-    "typescript": "^5.4.2"
+    "@types/node": "^20.11.26",
+    "typescript": "^5.4.2",
+    "local-api": "^1.0.0"
   }
 }
