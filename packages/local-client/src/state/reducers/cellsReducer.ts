@@ -1,7 +1,7 @@
 import { ActionType } from "../action-types";
 import { Action } from "../actions";
 import { Cell } from "../cell";
-import produce from 'immer';
+import produce from "immer";
 
 interface CellsState {
   loading: boolean;
@@ -21,6 +21,28 @@ const initialState: CellsState = {
 
 const reducer = produce((state: CellsState = initialState, action: Action) => {
   switch (action.type) {
+    case ActionType.FETCH_CELLS:
+      // just in case we have an error from a previous fetch
+      state.error = null;
+      state.loading = true;
+      return state;
+
+    case ActionType.FETCH_CELLS_COMPLETE:
+      // action payload is Cell[] - for each cell in the array return their ids
+      state.order = action.payload.map((cell) => cell.id);
+      // iterate over every element and add in new data
+      state.data = action.payload.reduce((acc, cell) => {
+        // adiing a KVP to the acc object
+        acc[cell.id] = cell;
+        return acc;
+      }, {} as CellsState["data"]);
+      return state;
+
+    case ActionType.FETCH_CELLS_ERROR:
+      state.loading = false;
+      state.error = action.payload;
+      return state;
+
     case ActionType.UPDATE_CELL:
       const { id, content } = action.payload;
       state.data[id].content = content;
@@ -54,7 +76,6 @@ const reducer = produce((state: CellsState = initialState, action: Action) => {
         type: action.payload.type,
         id: randomId(),
       };
-      
 
       state.data[cell.id] = cell;
 
@@ -70,7 +91,7 @@ const reducer = produce((state: CellsState = initialState, action: Action) => {
         state.order.splice(foundIndex + 1, 0, cell.id);
       }
 
-    // console.log(state.order);
+      // console.log(state.order);
 
       return state;
 

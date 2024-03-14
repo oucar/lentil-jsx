@@ -3,7 +3,6 @@
 - A user will be able to use the CLI to launch an interactive development environment inside their browser.
 - Users will be able to share their code with others by sharing a URL that points to the interactive development environment.
 - A copy of their works can also be saved to their local machine.
-- Firebase or mongodb implementation?!!
 - Users can choose different themes for their code.
 - Supports js, ts, jsx and tsx files.
 - Redux for global state management
