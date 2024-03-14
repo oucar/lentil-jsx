@@ -1,6 +1,6 @@
 {
-  "name": "cli-react",
-  "version": "0.1.0",
+  "name": "local-client",
+  "version": "0.0.2",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.5.1",
