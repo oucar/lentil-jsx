@@ -2,6 +2,7 @@ import { Command } from "commander";
 import { serve } from "local-api";
 import path from "path";
 
+// @@TODO: before deploying, make sure it's supposed to be process.env and not import.meta
 const isProduction = process.env.NODE_ENV === "production";
 
 interface LocalApiError {
@@ -34,7 +35,7 @@ export const serveCommand = new Command()
         !isProduction
       );
       console.log(
-        `Opened ${filename}. Navigate to http://localhost:${options.port} to edit the file.`
+        `Opened ${filename}! Navigate to http://localhost:${options.port} to edit the file.`
       );
     } catch (err) {
       if (isLocalApiError(err)) {

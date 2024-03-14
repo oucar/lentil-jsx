@@ -15,6 +15,9 @@ interface LocalApiError {
 export const createCellsRouter = (filename: string, dir: string) => {
   const router = express.Router();
 
+  // body parser middleware
+  router.use(express.json());
+
   const fullPath = path.join(dir, filename);
 
   router.get('/cells', async (req, res) => {
@@ -29,6 +32,7 @@ export const createCellsRouter = (filename: string, dir: string) => {
       res.send(JSON.parse(result));
     } catch (err) {
       if (isLocalApiError(err)) {
+        // Already in use error
         if (err.code === 'ENOENT') {
           await fs.writeFile(fullPath, '[]', 'utf-8');
           res.send([]);
@@ -41,10 +45,10 @@ export const createCellsRouter = (filename: string, dir: string) => {
 
   router.post('/cells', async (req, res) => {
     // Take the list of cells from the request obj
-    // serialize them
+    // serialize them - write them back to the file system
     const { cells }: { cells: Cell[] } = req.body;
 
-    // Write the cells into the file
+    // Write the cells into the file - filename from the arguments
     await fs.writeFile(fullPath, JSON.stringify(cells), 'utf-8');
 
     res.send({ status: 'ok' });

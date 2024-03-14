@@ -11,12 +11,9 @@ export const serve = (
 ) => {
   const app = express();
 
+  // if we are in development mode, we want to use the proxy
   if (useProxy) {
     // localhost:4005 (by default) -> localhost:5173
-    // @@TODO: Process is really annoying right now!!
-    // Install dependencies for local-client, run local-client, run npm start in root, and then
-    // run node index.js serve in cli :(
-    // local-client needs to work with lerna.
     app.use(
       createProxyMiddleware({
         target: "http://localhost:5173",
@@ -25,12 +22,15 @@ export const serve = (
         logLevel: "silent",
       })
     );
+
+    // serve up built files from local-client/dist --> local-api/node_modules
+    // as local-client is a dependency of local-api
   } else {
     const packagePath = require.resolve("local-client/build/index.html");
     app.use(express.static(path.dirname(packagePath)));
   }
 
-  app.use(createCellsRouter(filename, dir));
+  // app.use(createCellsRouter(filename, dir));
 
   // custom promise to handle the server listening
   return new Promise<void>((resolve, reject) => {

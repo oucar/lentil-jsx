@@ -20,6 +20,7 @@
     "@types/node": "^20.11.26",
     "cors": "^2.8.5",
     "express": "^4.18.3",
-    "http-proxy-middleware": "^2.0.6"
+    "http-proxy-middleware": "^2.0.6",
+    "local-client": "^0.0.1"
   }
 }
