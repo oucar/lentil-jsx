@@ -1,8 +1,13 @@
 {
-  "name": "local-client",
+  "name": "@lentil-jsx/local-client",
   "version": "0.0.3",
-  "private": true,
-  "dependencies": {
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
     "@fortawesome/fontawesome-free": "^6.5.1",
     "@monaco-editor/react": "3.7.5",
     "@reduxjs/toolkit": "^2.2.1",
@@ -45,7 +50,8 @@
   "scripts": {
     "start": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepublishOnly": "npm run build"
   },
   "eslintConfig": {
     "extends": [
@@ -65,11 +71,7 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "@rollup/plugin-replace": "^5.0.5",
-    "assert": "^2.1.0",
-    "constants-browserify": "^1.0.0",
-    "os-browserify": "^0.3.0",
-    "react-app-rewired": "^2.2.1"
+  "dependencies": {
+    "esbuild": "0.8.26"
   }
 }

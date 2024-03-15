@@ -28,7 +28,7 @@ export const serve = (
     // serve up built files from local-client/dist --> local-api/node_modules
     // as local-client is a dependency of local-api
   } else {
-    const packagePath = require.resolve("local-client/build/index.html");
+    const packagePath = require.resolve("@lentil-jsx/local-client/build/index.html");
     app.use(express.static(path.dirname(packagePath)));
   }
 

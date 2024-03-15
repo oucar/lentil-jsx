@@ -1,22 +1,29 @@
 {
-  "name": "cli",
+  "name": "lentil-jsx",
   "version": "0.0.3",
   "description": "",
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": "dist/index.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "start": "tsc --watch --preserveWatchOutput",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublishOnly": "esbuild src/index.ts --platform=node --outfile=dist/index.js --bundle --minify --define:process.env.NODE_ENV=\\\"production\\\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/node": "^20.11.26",
-    "commander": "^12.0.0",
-    "local-api": "^0.0.3"
+    "@lentil-jsx/local-client": "^1.0.0"
   },
   "devDependencies": {
+    "@lentil-jsx/local-api": "^1.0.0",
     "@types/node": "^20.11.26",
-    "local-api": "^1.0.0",
+    "esbuild": "0.8.26",
     "typescript": "^5.4.2"
   }
 }
