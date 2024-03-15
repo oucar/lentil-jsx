@@ -3,7 +3,6 @@
 - A user will be able to use the CLI to launch an interactive development environment inside their browser.
 - Users will be able to share their code with others by sharing a URL that points to the interactive development environment.
 - A copy of their works can also be saved to their local machine.
-- Firebase or mongodb implementation?!!
 - Users can choose different themes for their code.
 - Supports js, ts, jsx and tsx files.
 - Redux for global state management
@@ -21,7 +20,7 @@
 - When using lerna, do not use yarn or npm to install dependencies. Use lerna add <package-name> to add a dependency to a project.
 - Lerna documentation: https://lerna.js.org/
 - run `npm start` in the root directory to start the development environment, which will start the development environment for all the projects. (You might want to run `npm install` inside local-client first to install dependencies for the local-client project first. It will be fixed later.)
--  `lerna bootstrap -- --legacy-peer-deps` in the root directory, and then `node index.js serve` inside cli/dist to start the development environment for the CLI.
+-  `lerna clean`, `lerna bootstrap -- --legacy-peer-deps` in the root directory, and then `node index.js serve` inside cli/dist to start the development environment for the CLI.
 
 
 # Brainstorming

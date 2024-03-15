@@ -1,5 +1,6 @@
 import { ActionType } from "../action-types";
 import { Dispatch } from "redux";
+import axios from "axios";
 import {
   UpdateCellAction,
   DeleteCellAction,
@@ -8,9 +9,11 @@ import {
   Direction,
   Action,
 } from "../actions";
-import { CellTypes } from "../cell";
+import { Cell, CellTypes } from "../cell";
 import bundle from "../../bundler";
+import { RootState } from "../reducers";
 
+//@TODO: Update comments for actions so that they are all similar to SaveCells
 export const updateCell = (id: string, content: string): UpdateCellAction => {
   return {
     type: ActionType.UPDATE_CELL,
@@ -74,5 +77,55 @@ export const createBundle = (cellId: string, input: string) => {
         },
       },
     });
+  };
+};
+
+export const fetchCells = () => {
+  // Dispatch action can only be called from a properly typed in object
+  return async (dispatch: Dispatch<Action>) => {
+    dispatch({ type: ActionType.FETCH_CELLS });
+    try {
+      const { data }: { data: Cell[] } = await axios.get("/cells");
+
+      dispatch({
+        type: ActionType.FETCH_CELLS_COMPLETE,
+        payload: data,
+      });
+    } catch (err) {
+      if (err instanceof Error) {
+        dispatch({
+          type: ActionType.FETCH_CELLS_ERROR,
+          payload: err.message,
+        });
+      }
+    }
+  };
+};
+
+/**
+ * Dispatches an action to save cells data to the server asynchronously.
+ *
+ * @param {function} dispatch - Function to dispatch actions to Redux store.
+ * @param {function} getState - Function to retrieve the current state from Redux store.
+ */
+export const saveCells = () => {
+  return async (dispatch: Dispatch<Action>, getState: () => RootState) => {
+    const state = getState();
+    const cells = state.cells;
+
+    const { data, order } = cells;
+
+    const cellsToSave = order.map((id: string) => data[id]);
+
+    try {
+      await axios.post("/cells", { cells: cellsToSave });
+    } catch (err) {
+      if (err instanceof Error) {
+        dispatch({
+          type: ActionType.SAVE_CELLS_ERROR,
+          payload: err.message,
+        });
+      }
+    }
   };
 };
