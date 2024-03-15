@@ -28,8 +28,7 @@
     "cors": "^2.8.5",
     "esbuild": "0.8.26",
     "express": "^4.18.3",
-    "http-proxy-middleware": "^2.0.6",
-    "typescript": "^5.4.2"
+    "http-proxy-middleware": "^2.0.6"
   },
-  "gitHead": "5df1b73a0e298e9454f4d4711b24e0f1a2d5f0a3"
+  "gitHead": "ca63f9f1f4e30d43d40739a229daaf8f60447f94"
 }
