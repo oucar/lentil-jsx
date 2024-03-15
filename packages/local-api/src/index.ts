@@ -18,8 +18,9 @@ export const serve = (
     // localhost:4005 (by default) -> localhost:5173
     app.use(
       createProxyMiddleware({
-        target: "http://localhost:5173",
+        //@@TODO: extract this to a config file
         //target: 'http://127.0.0.1:5173',
+        target: "http://localhost:5173",
         ws: true,
         logLevel: "silent",
       })
@@ -28,7 +29,9 @@ export const serve = (
     // serve up built files from local-client/dist --> local-api/node_modules
     // as local-client is a dependency of local-api
   } else {
-    const packagePath = require.resolve("@lentil-jsx/local-client/build/index.html");
+    const packagePath = require.resolve(
+      "@lentil-jsx/local-client/build/index.html"
+    );
     app.use(express.static(path.dirname(packagePath)));
   }
 

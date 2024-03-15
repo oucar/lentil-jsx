@@ -13,7 +13,7 @@ import { Cell, CellTypes } from "../cell";
 import bundle from "../../bundler";
 import { RootState } from "../reducers";
 
-//@TODO: Update comments for actions so that they are all similar to SaveCells
+//@TODO: Update comments for actions so that they are all similar to SaveCells!
 export const updateCell = (id: string, content: string): UpdateCellAction => {
   return {
     type: ActionType.UPDATE_CELL,
