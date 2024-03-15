@@ -1,12 +1,18 @@
 {
-  "name": "local-api",
-  "version": "0.0.2",
+  "name": "@lentil-jsx/local-api",
+  "version": "1.0.0",
   "description": "",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist"
+  ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "start": "tsc --watch --preserveWatchOutput",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepublishOnly": "tsc"
   },
   "keywords": [],
   "author": "",
@@ -17,10 +23,11 @@
     "typescript": "^5.4.2"
   },
   "dependencies": {
+    "@lentil-jsx/local-client": "^1.0.0",
     "@types/node": "^20.11.26",
     "cors": "^2.8.5",
+    "esbuild": "0.8.26",
     "express": "^4.18.3",
-    "http-proxy-middleware": "^2.0.6",
-    "local-client": "^0.0.2"
+    "http-proxy-middleware": "^2.0.6"
   }
 }
