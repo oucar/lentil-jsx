@@ -21,6 +21,7 @@
     "@lentil-jsx/local-client": "^1.0.7",
     "commander": "^12.0.0",
     "esbuild": "0.8.26",
+    "tsc": "^2.0.4",
     "typescript": "^5.4.2"
   },
   "devDependencies": {
@@ -30,5 +31,5 @@
     "esbuild": "0.8.26",
     "typescript": "^5.4.2"
   },
-  "gitHead": "956b5d5dee9426b3b88ad5ff6c678c3d3527866d"
+  "gitHead": "968affd3187df2508cc2a55be35239454ba28ae0"
 }
