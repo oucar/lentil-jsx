@@ -72,5 +72,6 @@
     "vite": "^5.1.5",
     "vite-tsconfig-paths": "^4.3.1",
     "web-vitals": "^2.1.4"
-  }
+  },
+  "gitHead": "f75ccebec252a1c852689dd80177b3ce0ece8a8c"
 }

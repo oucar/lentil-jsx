@@ -23,7 +23,7 @@
 - Use `npm i --legacy-peer-deps` (will be fixed later), and then `npm run` to run the application locally.
 - When running from an installed npm package - after installing the package globally, use `npx lentil-jsx serve [options] [command]` or `lentil-jsx serve [options] [command]` directly. 
 - https://www.npmjs.com/org/lentil-jsx
-- 
+- `npm run prepublishOnly` needs to be run before publishing the package to npm. This will build the package and create a dist folder.
 
 # Brainstorming
 - Mongodb implementation for saving users' code, where users can share their codes and "notebooks" with others. 
