@@ -32,7 +32,7 @@ export const persistMiddlware = ({
         }
         timer = setTimeout(() => {
           saveCells()(dispatch, getState);
-          //@@TODO : 750 instead of 250?
+          // @@TODO : 750 instead of 250?
         }, 250);
       }
     };
