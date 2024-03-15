@@ -26,7 +26,8 @@ export const serve = (
       })
     );
 
-    // serve up built files from local-client/dist --> local-api/node_modules
+    // @@TODO: comment cleanup
+    // serve up built files from @lentil-jsx/local-client/dist --> @lentil-jsx/local-api/node_modules
     // as local-client is a dependency of local-api
   } else {
     const packagePath = require.resolve(
