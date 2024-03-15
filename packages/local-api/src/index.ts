@@ -11,6 +11,8 @@ export const serve = (
 ) => {
   const app = express();
 
+  app.use(createCellsRouter(filename, dir));
+
   // if we are in development mode, we want to use the proxy
   if (useProxy) {
     // localhost:4005 (by default) -> localhost:5173
@@ -29,8 +31,6 @@ export const serve = (
     const packagePath = require.resolve("local-client/build/index.html");
     app.use(express.static(path.dirname(packagePath)));
   }
-
-  // app.use(createCellsRouter(filename, dir));
 
   // custom promise to handle the server listening
   return new Promise<void>((resolve, reject) => {
