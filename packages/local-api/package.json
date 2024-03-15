@@ -1,6 +1,6 @@
 {
   "name": "@lentil-jsx/local-api",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "",
   "publishConfig": {
     "access": "public"
@@ -23,7 +23,7 @@
     "typescript": "^5.4.2"
   },
   "dependencies": {
-    "@lentil-jsx/local-client": "^1.0.6",
+    "@lentil-jsx/local-client": "^1.0.7",
     "@types/node": "^20.11.26",
     "cors": "^2.8.5",
     "esbuild": "0.8.26",
