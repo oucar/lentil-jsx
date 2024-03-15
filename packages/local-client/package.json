@@ -8,6 +8,34 @@
     "dist"
   ],
   "devDependencies": {
+    "@rollup/plugin-replace": "^5.0.5",
+    "assert": "^2.1.0"
+  },
+  "scripts": {
+    "start": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "prepublishOnly": "npm run build"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "dependencies": {
     "@fortawesome/fontawesome-free": "^6.5.1",
     "@monaco-editor/react": "3.7.5",
     "@reduxjs/toolkit": "^2.2.1",
@@ -46,32 +74,5 @@
     "vite": "^5.1.5",
     "vite-tsconfig-paths": "^4.3.1",
     "web-vitals": "^2.1.4"
-  },
-  "scripts": {
-    "start": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
-    "prepublishOnly": "npm run build"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "dependencies": {
-    "esbuild": "0.8.26"
   }
 }

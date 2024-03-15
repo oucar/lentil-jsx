@@ -35,15 +35,16 @@ export const serveCommand = new Command()
       console.log(
         `Opened ${filename}! Navigate to http://localhost:${options.port} to edit the file.`
       );
-    } catch (err) {
+    } catch (err: any) {
       if (isLocalApiError(err)) {
         // Already in use error
         if (err.code === "EADDRINUSE") {
           console.error("Port is in use. Try running on a different port.");
         }
       } else if (err instanceof Error) {
-        console.log("Heres the problem", err.message);
+        console.log("ERROR: ", err.message);
       }
+      console.log("Error occurred while trying to open the file: ", err.message);
       process.exit(1);
     }
   });
