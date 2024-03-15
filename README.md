@@ -21,7 +21,7 @@
 - Lerna documentation: https://lerna.js.org/
 - run `npm start` in the root directory to start the development environment, which will start the development environment for all the projects. (You might want to run `npm install` inside local-client first to install dependencies for the local-client project first. It will be fixed later.)
 -  `lerna clean`, `lerna bootstrap -- --legacy-peer-deps` in the root directory, and then `node index.js serve` inside cli/dist to start the development environment for the CLI.
-
+- https://www.npmjs.com/org/lentil-jsx
 
 # Brainstorming
 - ~~Mongodb implementation for saving users' code, where users can share their codes and "notebooks" with others.~~

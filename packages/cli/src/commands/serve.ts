@@ -2,7 +2,6 @@ import { Command } from "commander";
 import { serve } from "@lentil-jsx/local-api";
 import path from "path";
 
-// @@TODO: before deploying, make sure it's supposed to be process.env and not import.meta
 const isProduction = process.env.NODE_ENV === "production";
 
 interface LocalApiError {
@@ -11,7 +10,6 @@ interface LocalApiError {
 
 // node index.js serve --help
 // Different ways to run the serve command:
-// @@TODO: Documentation
 // node index.js serve book.js --> book.js, 4005
 // node index.js serve book.js -p 3000 --> book.js, 3000
 // node index.js serve -p 4141 --> notebook.js, 4141
