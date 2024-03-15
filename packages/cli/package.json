@@ -20,8 +20,7 @@
   "dependencies": {
     "@lentil-jsx/local-client": "^1.0.7",
     "commander": "^12.0.0",
-    "esbuild": "0.8.26",
-    "tsc": "^2.0.4"
+    "esbuild": "0.8.26"
   },
   "devDependencies": {
     "@lentil-jsx/local-api": "^1.0.7",
@@ -30,5 +29,5 @@
     "esbuild": "0.8.26",
     "typescript": "^5.4.2"
   },
-  "gitHead": "b3e170ddc3664c3fab02484fa2f3a48bc8c700a1"
+  "gitHead": "b27a0e4c6e92dfcf47abc3c1d3af1dec479f7127"
 }
