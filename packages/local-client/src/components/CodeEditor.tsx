@@ -7,8 +7,6 @@ import parser from "prettier/parser-babel";
 import codeShift from 'jscodeshift';
 import MonacoJSXHighlighter from 'monaco-jsx-highlighter';
 
-// @@TODO: Add a feature so that similar to VSCODE
-// Same shortcut beautifies the code
 interface CodeEditorProps {
   initialValue: string;
   onChange(value: string): void;

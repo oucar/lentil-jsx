@@ -91,8 +91,6 @@ const reducer = produce((state: CellsState = initialState, action: Action) => {
         state.order.splice(foundIndex + 1, 0, cell.id);
       }
 
-      // console.log(state.order);
-
       return state;
 
     default:

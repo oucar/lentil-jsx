@@ -37,8 +37,6 @@ const bundle = async (rawCode: string) => {
     // bundling error handling
   } catch (error) {
     const errorMessage = (error as Error).message;
-    // console.log(errorMessage);
-
     return {
       code: "",
       error: errorMessage,

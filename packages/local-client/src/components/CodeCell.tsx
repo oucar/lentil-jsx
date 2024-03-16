@@ -3,10 +3,10 @@ import CodeEditor from "./CodeEditor";
 import Preview from "./Preview";
 import Resizable from "./Resizable";
 import { Cell } from "../state";
-import { useActions } from "../hooks/use-actions";
-import { useTypedSelector } from "../hooks/use-typed-selector";
+import { useActions } from "../hooks/useActions";
+import { useTypedSelector } from "../hooks/useTypedSelector";
 import "./styles/codeCell.css";
-import { useCumulativeCode } from "../hooks/use-cumulative-code";
+import { useCumulativeCode } from "../hooks/useCumulativeCode";
 
 interface CodeCellProps {
   cell: Cell;
