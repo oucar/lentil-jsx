@@ -9,3 +9,7 @@
 .action-bar:hover {
   opacity: 1;
 }
+
+.action-bar-wrapper {
+  background-color: rgb(9, 16, 32);
+}

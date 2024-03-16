@@ -48,7 +48,6 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ onChange, initialValue }) => {
         plugins: [parser],
         useTabs: false,
         semi: true,
-        // @@TODO: Should this be changed?
         singleQuote: true,
       })
       .replace(/\n$/, "");
@@ -69,7 +68,6 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ onChange, initialValue }) => {
         editorDidMount={onEditorDidMount}
         value={initialValue}
         theme="dark"
-        // @@TODO: Dynamic language
         language="javascript"
         height="100%"
         options={{

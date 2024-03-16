@@ -1,3 +1,4 @@
+// index.ts
 import express from "express";
 import { createProxyMiddleware } from "http-proxy-middleware";
 import path from "path";
@@ -11,7 +12,7 @@ export const serve = (
 ) => {
   const app = express();
 
-  app.use(createCellsRouter(filename, dir));
+  app.use("/cells", createCellsRouter(filename, dir));
 
   // if we are in development mode, we want to use the proxy
   if (useProxy) {

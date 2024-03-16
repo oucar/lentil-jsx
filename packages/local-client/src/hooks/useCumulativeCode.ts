@@ -5,44 +5,50 @@ export const useCumulativeCode = (cellId: string) => {
     const { data, order } = state.cells;
     const orderedCells = order.map((id) => data[id]);
 
-    // Built-in display() function that lets you display objects, JSX elements,
+    // Built in display() function that lets you display objects, JSX elements,
     // variables etc in the Preview window
+    // importing ReactDOM from 'react-dom' is faster but throws a "Warning"
+    // NOTE: No need to import React in code cell
+    // show(<div><Component/><Component/></div>)
     const displayFunc = `
-      const display = (value) => {
-        const root = document.querySelector('#root');
+    import _React from 'react';
+    import _ReactDOM from 'react-dom/client';
+    var display = (value) => {
+      const root = document.querySelector('#root');
   
-        if (typeof value === 'object') {
-          if (value.$$typeof && value.props) {
-            const rootElement = ReactDOM.createRoot(root);
-            rootElement.render(value);
-          } else {
-            root.innerHTML = JSON.stringify(value);
-          }
+      if (typeof value === 'object') {
+        if (value.$$typeof && value.props) {
+          const rootElement = _ReactDOM.createRoot(root);
+          rootElement.render(value);
         } else {
-          root.innerHTML = value;
+          root.innerHTML = JSON.stringify(value);
         }
-      };
-    `;
+      } else {
+        root.innerHTML = value;
+      }
+    };
+  `;
 
     // Intercept console.log calls and redirect them to the display function
     const consoleIntercept = `
       const originalLog = console.log;
       console.log = (...args) => {
-        display("Oh... why do you use console.log when you can use display()?");
+        display('Oh... why do you use console.log when you can use <span style="color: red;">display()</span>?');
         originalLog.apply(console, args);
       };
     `;
 
     // This is a noop function that will be used for all cells before the current cell
-    // So that code from previous cells doesn't end up in the current cell's preview display
-    const displayFuncNoop = "const display = () => {}";
+    // So that code from previous cells doesn't end up in current cell's preview display
+    const displayFuncNoop = "var display = () => {}";
     const cumulativeCode = [];
-    // cumulative code array holds all the code that is in the cells before the current cell
+
+    cumulativeCode.push(consoleIntercept);
+    // cumulative code array holds all the code that are in the cells before the current cell
     for (let c of orderedCells) {
       if (c.type === "code") {
         if (c.id === cellId) {
           cumulativeCode.push(displayFunc);
-          cumulativeCode.push(consoleIntercept); // Intercept console.log calls
         } else {
           cumulativeCode.push(displayFuncNoop);
         }

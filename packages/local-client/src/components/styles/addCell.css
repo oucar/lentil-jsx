@@ -1,8 +1,8 @@
 .add-cell {
   position: relative;
-  opacity: 0;
+  /* opacity: 0; */
   transition: opacity 0.3s ease-in 0.1s;
-  margin: 8px 0;
+  margin: 12px 0 18px;
 }
 
 .add-cell:hover {
@@ -31,4 +31,13 @@
 
 .add-cell .add-buttons button {
   margin: 0 20px;
+}
+
+.add-cell:not(:first-child) {
+  margin-top: 24px;
+}
+
+.add-cell:last-child {
+  /* background-color: red; */
+  margin-bottom: 200px;
 }
