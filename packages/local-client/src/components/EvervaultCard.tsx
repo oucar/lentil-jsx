@@ -1,6 +1,6 @@
 "use client";
 import { useMotionValue } from "framer-motion";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useMotionTemplate, motion } from "framer-motion";
 import { cn } from "../utils/cn";
 
@@ -80,8 +80,7 @@ export function CardPattern({ mouseX, mouseY, randomString }: any) {
   );
 }
 
-const characters =
-  "MERCIMEKmercimekLENTILlentil";
+const characters = "MERCIMEKmercimekLENTILlentil";
 export const generateRandomString = (length: number) => {
   let result = "";
   for (let i = 0; i < length; i++) {
