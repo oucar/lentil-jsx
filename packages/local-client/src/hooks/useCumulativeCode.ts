@@ -30,20 +30,20 @@ export const useCumulativeCode = (cellId: string) => {
   `;
 
     // Intercept console.log calls and redirect them to the display function
-    const consoleIntercept = `
-      const originalLog = console.log;
-      console.log = (...args) => {
-        display('Oh... why do you use console.log when you can use <span style="color: red;">display()</span>?');
-        originalLog.apply(console, args);
-      };
-    `;
+    // const consoleIntercept = `
+    //   const originalLog = console.log;
+    //   console.log = (...args) => {
+    //     display('Oh... why do you use console.log when you can use <span style="color: red;">display()</span>?');
+    //     originalLog.apply(console, args);
+    //   };
+    // `;
 
     // This is a noop function that will be used for all cells before the current cell
     // So that code from previous cells doesn't end up in current cell's preview display
     const displayFuncNoop = "var display = () => {}";
     const cumulativeCode = [];
 
-    cumulativeCode.push(consoleIntercept);
+    // cumulativeCode.push(consoleIntercept);
     // cumulative code array holds all the code that are in the cells before the current cell
     for (let c of orderedCells) {
       if (c.type === "code") {

@@ -1,6 +1,6 @@
 .add-cell {
   position: relative;
-  /* opacity: 0; */
+  opacity: 0;
   transition: opacity 0.3s ease-in 0.1s;
   margin: 12px 0 18px;
 }
@@ -15,12 +15,9 @@
 
 .add-cell .divider {
   position: absolute;
-  top: 50%;
   bottom: 50%;
-  right: 2.5%;
-  left: 2.5%;
   border-bottom: 1px solid gray;
-  width: 95%;
+  width: 100%;
   z-index: -1;
 }
 
