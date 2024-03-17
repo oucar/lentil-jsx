@@ -23,6 +23,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ onChange, initialValue }) => {
 
     monacoEditor.getModel()?.updateOptions({ tabSize: 2 });
 
+
     const highlighter = new MonacoJSXHighlighter(
       // @ts-ignore
       window.monaco,

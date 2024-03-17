@@ -18,10 +18,12 @@
   opacity: 1;
 }
 
+/* Adjust the background color of the editor lines */
 .view-lines {
-  background-color: rgb(15 23 42);
+  background-color: rgba(15, 23, 42, 0.9);
 }
 
+
 .margin-view-overlays {
-  background-color: rgb(15 23 42);
+  background-color: rgba(15, 23, 42, 0.9);
 }
