@@ -13,7 +13,7 @@ interface LocalApiError {
 const handleServeCommand = async (
   filename = "lentil-jsx-notebook.js",
   options: { port: string },
-  content?: string // Optional content parameter
+  content?: string
 ) => {
   const isLocalApiError = (err: any): err is LocalApiError => {
     return typeof err.code === "string";
