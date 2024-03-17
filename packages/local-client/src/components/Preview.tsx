@@ -5,8 +5,6 @@ interface PreviewProps {
   code: string;
   bundlingError: string;
 }
-
-// @@TODO: Extract the html into a separate file
 const html = `
     <html>
       <head>

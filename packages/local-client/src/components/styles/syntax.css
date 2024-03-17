@@ -72,6 +72,11 @@
   text-underline-position: under;
 }
 
+/* .editor-wrapper .mtkw {
+  color:red;
+  background-color: red;
+} */
+
 .editor-wrapper .mtk100.Identifier.JsxElement.Bracket {
   color: #0080ff;
 }

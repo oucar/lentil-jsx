@@ -10,6 +10,7 @@ interface CellsState {
   data: {
     [key: string]: Cell;
   };
+  firstTimeLoading:boolean;
 }
 
 const initialState: CellsState = {
@@ -17,6 +18,7 @@ const initialState: CellsState = {
   error: null,
   order: [],
   data: {},
+  firstTimeLoading:true,
 };
 
 const reducer = produce((state: CellsState = initialState, action: Action) => {
