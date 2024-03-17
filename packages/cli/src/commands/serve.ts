@@ -8,43 +8,79 @@ interface LocalApiError {
   code: string;
 }
 
-// node index.js serve --help
-// Different ways to run the serve command:
-// node index.js serve book.js --> book.js, 4005
-// node index.js serve book.js -p 3000 --> book.js, 3000
-// node index.js serve -p 4141 --> notebook.js, 4141
-// node index.js serve --port=3000 book.js --> book.js, 3000
-// node index.js serve notes/notebook.js --> notebook.js {notes/notebook.js}, 4005
-export const serveCommand = new Command()
-  .command("serve [filename]")
-  .description("Open a notebook for editing!")
-  .option("-p, --port <number>", "port to run server on", "4005")
-  .action(async (filename = "notebook.js", options: { port: string }) => {
-    const isLocalApiError = (err: any): err is LocalApiError => {
-      return typeof err.code === "string";
-    };
+// Function to handle serve command
+const handleServeCommand = async (
+  filename = "lentil-jsx-notebook.js",
+  options: { port: string }
+) => {
+  const isLocalApiError = (err: any): err is LocalApiError => {
+    return typeof err.code === "string";
+  };
 
-    try {
-      const dir = path.join(process.cwd(), path.dirname(filename));
-      await serve(
-        parseInt(options.port),
-        path.basename(filename),
-        dir,
-        !isProduction
-      );
-      console.log(
-        `Opened ${filename}! Navigate to http://localhost:${options.port} to edit the file.`
-      );
-    } catch (err: any) {
-      if (isLocalApiError(err)) {
-        // Already in use error
-        if (err.code === "EADDRINUSE") {
-          console.error("Port is in use. Try running on a different port.");
-        }
-      } else if (err instanceof Error) {
-        console.log("ERROR: ", err.message);
+  try {
+    const dir = path.join(process.cwd(), path.dirname(filename));
+    await serve(
+      parseInt(options.port),
+      path.basename(filename),
+      dir,
+      !isProduction
+    );
+    console.log(
+      `Opened ${filename}! Navigate to http://127.0.0.1:${options.port} to edit the file.`
+    );
+  } catch (err: any) {
+    if (isLocalApiError(err)) {
+      // Already in use error
+      if (err.code === "EADDRINUSE") {
+        console.error("Port is in use. Try running on a different port.");
       }
-      console.log("Error occurred while trying to open the file: ", err.message);
-      process.exit(1);
+    } else if (err instanceof Error) {
+      console.log("ERROR: ", err.message);
     }
-  });
+    console.log("Error occurred while trying to open the file: ", err.message);
+    process.exit(1);
+  }
+};
+
+// Create a new commander instance
+const program = new Command();
+
+// Define the serve command
+const serveCommand = program
+  .command("serve [filename]")
+  .description(
+    "Starts the Lentil-JSX server to host your notebook for editing."
+  )
+  .option(
+    "-p, --port <number>",
+    "Specify the port to run the server on. Default is 4005."
+  )
+  .action(handleServeCommand);
+
+// Define the --help option and attach it to both serve and the main program
+const helpMessage = () => {
+  console.log("\nUsage:");
+  console.log("  $ lentil-jsx serve [filename] [port]");
+  console.log("\nOptions:");
+  console.log(
+    "  <filename>               Creates a JS file in your system and opens it in the browser."
+  );
+  console.log(
+    "                           Make it something unique! Default is 'lentil-jsx-notebook.js.'"
+  );
+  console.log(
+    "  -p, --port <number>      Specifies the port to run the server on. Default is 4005."
+  );
+  console.log("\nExamples:");
+  console.log("  $ lentil-jsx serve");
+  console.log("  $ lentil-jsx serve my-notebook.js");
+  console.log("  $ lentil-jsx serve --port 8080 my-notebook.js");
+  console.log("  $ npx lentil-jsx serve");
+  console.log("  $ npx lentil-jsx serve my-notebook.js --port 8080");
+};
+
+serveCommand.on("--help", helpMessage);
+program.on("--help", helpMessage);
+
+// Parse the command-line arguments
+program.parse(process.argv);

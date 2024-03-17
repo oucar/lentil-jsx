@@ -1,9 +1,7 @@
 import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
-import { actionCreators } from "../state/";
+import { actionCreators } from "../state";
 import { useMemo } from "react";
-
-console.log("Action Creators:", actionCreators);
 
 export const useActions = () => {
   const dispatch = useDispatch();

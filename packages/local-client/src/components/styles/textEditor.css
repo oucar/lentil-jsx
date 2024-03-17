@@ -1,3 +1,7 @@
+.card {
+  border: none;
+}
+
 .w-md-editor .title {
     line-height: unset;
     font-size: unset;
@@ -17,7 +21,7 @@
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=');
     height: 11px;
     cursor: row-resize;
-    background-color: #37414b;
+    background-color: rgb(9, 16, 32);
     background-repeat: no-repeat;
     background-position: 50%;
     width: 100%;
@@ -42,7 +46,7 @@
   }
   
   .text-editor .w-md-editor-toolbar {
-    background-color: #37414b;
+    background-color: rgb(9, 16, 32);
     border-bottom: 1px solid gray;
   }
   
@@ -51,9 +55,14 @@
   }
   
   .text-editor .w-md-editor-content {
-    background-color: #202123;
+    background-color: rgb(15 23 42);
   }
-  
+
+  .text-editor .card-content {
+    background-color: rgb(9, 16, 32);
+  }
+
+
   .text-editor .w-md-editor,
   .text-editor .w-md-editor .w-md-editor-text-pre {
     color: #d4d4d4;

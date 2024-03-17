@@ -1,9 +1,9 @@
-import { useTypedSelector } from "../hooks/use-typed-selector";
+import { useTypedSelector } from "../hooks/useTypedSelector";
 import CellListItem from "./CellListItem";
 import AddCell from "./AddCell";
 import { Fragment, useEffect } from "react";
 import "./styles/cellList.css";
-import { useActions } from "../hooks/use-actions";
+import { useActions } from "../hooks/useActions";
 
 
 const CellList: React.FC = () => {

@@ -1,5 +1,5 @@
 {
-  "name": "mercimek",
+  "name": "lentil-jsx",
   "private": true,
   "workspaces": [
     "packages/*"

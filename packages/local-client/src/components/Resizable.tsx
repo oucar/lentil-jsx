@@ -32,8 +32,6 @@ const Resizable: React.FC<ResizableProps> = ({ direction, children }) => {
           setWidth(window.innerWidth * 0.75);
         }
       }, 100);
-
-      // console.log(window.innerWidth, window.innerHeight);
       setInnerHeight(window.innerHeight);
       setInnerWidth(window.innerWidth);
     };

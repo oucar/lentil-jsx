@@ -1,4 +1,7 @@
-# React + TypeScript + Vite
+import React from "react";
+import MDEditor from "@uiw/react-md-editor";
+
+const markdown = `# React + TypeScript + Vite
 - A CLI to launch an interactive development environment for writing and documenting code.
 - A user will be able to use the CLI to launch an interactive development environment inside their browser.
 - Users will be able to share their code with others by sharing a URL that points to the interactive development environment.
@@ -10,7 +13,7 @@
 - Javascript modules: file that makes some values available to other modules. It does this by exporting them and then importing them into other modules. Can import and export multiple values.
 - Transpiling: converting code from one language to another. Babel is a popular transpiler for JavaScript.
 - Bundler: read the contents of the entry file, then recursively read the contents of all the files that are imported by the entry file, then read the contents of all the files that are imported by those files, and so on, until it has a complete list of all the files that are needed by the application. Then it combines all of those files into a single file, which is the bundle.
-- Transpiling locally: the code is transpiled on the client's machine. Faster code exectution, but slower initial load time. No need to maintain an API server. Less complexity!! What I'll be using. (explain further in the future)
+- Transpiling locally: the code is transpiled on the client's machine. Faster code execution, but slower initial load time. No need to maintain an API server. Less complexity!! What I'll be using. (explain further in the future)
 - Raw User Code --> ESBuild (Replaces what Babel and Webpack do) --> Bundle --> Browser: https://esbuild.github.io/ - 100x faster than Webpack and Babel. EsBuild uses Go.
 - Once files are downloaded to the cache, they don't need to be downloaded again, unless the user wants to reset his development environment for some reason. The cache is stored in the browser's local storage. 
 - Will be using IFrames, so that the user's code doesn't interfere with the code of the development environment. A great way to isolate the user's code from the development environment's code! (Different domains, different access to the DOM)
@@ -20,18 +23,17 @@
 - When using lerna, do not use yarn or npm to install dependencies. Use lerna add <package-name> to add a dependency to a project.
 - Lerna documentation: https://lerna.js.org/
 - Migrated to Lerna version 8! https://lerna.js.org/docs/legacy-package-management
-- Use `npm i --legacy-peer-deps` (will be fixed later), and then `npm run` to run the application locally.
-- When running from an installed npm package - after installing the package globally, use `npx lentil-jsx serve [options] [command]` or `lentil-jsx serve [options] [command]` directly. 
+- Use \`npm i --legacy-peer-deps\` (will be fixed later), and then \`npm run\` to run the application locally.
+- When running from an installed npm package - after installing the package globally, use \`npx lentil-jsx serve [options] [command]\` or \`lentil-jsx serve [options] [command]\` directly. 
 - https://www.npmjs.com/org/lentil-jsx
-- `npm run prepublishOnly` needs to be run before publishing the package to npm. This will build the package and create a dist folder.
-- `lerna clean`, `lerna bootstrap`, `npm start`
+- \`npm run prepublishOnly\` needs to be run before publishing the package to npm. This will build the package and create a dist folder.
+- \`lerna clean\`, \`lerna bootstrap\`, \`npm start\`
 
 - Issues that I was not able to reproduce: 
-  - Lerna bootstrap removes the "scripts" property from the package.json file, only in @lentil-jsx/local-client. This happened only once consistently, after running `lerna clean` and `lerna bootstrap`. I had to manually copy the "scripts" property from an earlier commit to fix the issue.
+  - Lerna bootstrap removes the "scripts" property from the package.json file, only in @lentil-jsx/local-client. This happened only once consistently, after running \`lerna clean\` and \`lerna bootstrap\`. I had to manually copy the "scripts" property from an earlier commit to fix the issue.
 
 # Brainstorming
-- ~~Mongodb implementation for saving users' code, where users can share their codes and "notebooks" with others.~~
-
+- Mongodb implementation for saving users' code, where users can share their codes and "notebooks" with others. 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
@@ -43,9 +45,9 @@ Currently, two official plugins are available:
 
 If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-- Configure the top-level `parserOptions` property like this:
+- Configure the top-level \`parserOptions\` property like this:
 
-```js
+\`\`\`js
 export default {
   // other rules...
   parserOptions: {
@@ -55,8 +57,20 @@ export default {
     tsconfigRootDir: __dirname,
   },
 }
-```
+\`\`\`
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- Replace \`plugin:@typescript-eslint/recommended\` to \`plugin:@typescript-eslint/recommended-type-checked\` or \`plugin:@typescript-eslint/strict-type-checked\`
+- Optionally add \`plugin:@typescript-eslint/stylistic-type-checked\`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add \`plugin:react/recommended\` & \`plugin:react/jsx-runtime\` to the \`extends\` list`;
+
+const Documentation: React.FC = () => {
+  return (
+    <div className="mt-12 mb-12">
+      <div className="container">
+        <MDEditor.Markdown source={markdown} />
+      </div>
+    </div>
+  );
+};
+
+export default Documentation;

@@ -17,3 +17,11 @@
 .editor-wrapper:hover .button-format {
   opacity: 1;
 }
+
+.view-lines {
+  background-color: rgb(15 23 42);
+}
+
+.margin-view-overlays {
+  background-color: rgb(15 23 42);
+}
