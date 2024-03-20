@@ -56,8 +56,11 @@ export const createCellsRouter = (filename: string, dir: string) => {
 
   // Catch-all route to serve React's index.html for client-side routing
   router.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "@lentil-jsx/local-client/index.html")); 
+    res.sendFile(path.join(__dirname, "@lentil-jsx/local-client/dist/index.html")); 
   });
+
+  
+
 
   return router;
 };
