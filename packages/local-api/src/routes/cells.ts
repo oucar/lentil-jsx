@@ -25,7 +25,6 @@ export const createCellsRouter = (filename: string, dir: string) => {
       return typeof err.code === "string";
     };
 
-
     try {
       // Read the file
       const result = await fs.readFile(fullPath, { encoding: "utf-8" });
@@ -53,6 +52,11 @@ export const createCellsRouter = (filename: string, dir: string) => {
     await fs.writeFile(fullPath, JSON.stringify(cells), "utf-8");
 
     res.send({ status: "ok" });
+  });
+
+  // Catch-all route to serve React's index.html for client-side routing
+  router.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "@lentil-jsx/local-client/index.html")); 
   });
 
   return router;
