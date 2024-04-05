@@ -11,16 +11,13 @@
   ],
   "scripts": {
     "start": "tsc --watch --preserveWatchOutput",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "esbuild src/index.ts --platform=node --outfile=dist/index.js --bundle --minify --define:process.env.NODE_ENV=\\\"production\\\" --sourcemap=inline"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@lentil-jsx/local-client": "^1.0.9",
-    "commander": "^12.0.0",
-    "esbuild": "0.8.26"
+    "@lentil-jsx/local-client": "^1.0.9"
   },
   "devDependencies": {
     "@lentil-jsx/local-api": "^1.0.9",

@@ -21,10 +21,10 @@ export const createCellsRouter = (filename: string, dir: string) => {
   const fullPath = path.join(dir, filename);
 
   router.get("/cells", async (req, res) => {
+    console.log("GET /cells");
     const isLocalApiError = (err: any): err is LocalApiError => {
       return typeof err.code === "string";
     };
-
 
     try {
       // Read the file
@@ -47,12 +47,22 @@ export const createCellsRouter = (filename: string, dir: string) => {
   router.post("/cells", async (req, res) => {
     // Take the list of cells from the request obj
     // serialize them - write them back to the file system
+    console.log("POST /cells");
     const { cells }: { cells: Cell[] } = req.body;
 
     // Write the cells into the file - filename from the arguments
     await fs.writeFile(fullPath, JSON.stringify(cells), "utf-8");
 
     res.send({ status: "ok" });
+  });
+
+  router.get("*", (req, res) => {
+    console.log("GET /");
+    const indexPath = path.resolve(
+      __dirname,
+      "@lentil-jsx/local-client/dist/index.html"
+    );
+    res.sendFile(indexPath);
   });
 
   return router;
