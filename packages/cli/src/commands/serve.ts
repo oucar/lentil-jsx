@@ -28,7 +28,7 @@ const handleServeCommand = async (
       JSON.stringify([
         {
           content:
-            "🌟 **Welcome to Lentil-JSX!!** 🚀\n\nLet's take a quick tour of our amazing application, but don't worry, I'll keep it simple for you!\n\n📦 **No Imports Needed:** You don't need to import `React` or `ReactDOM` into your code cells because we've got you covered! Importing them again won't hurt, though. Esbuild is smart enough not to load `'react'` if it's already been loaded.\n\n🎨 **Interactive Code Cells:** Take a look at the code cell below where we import `'react'` and `'react-chartjs-2'` to create a simple yet effective Bar and Line charts.\n\n🤝 **Cumulative Code Sharing:** With Lentil-JSX, you can enjoy cumulative code-sharing, allowing you to access components and declarations from previous code cells effortlessly!\n\nLet's dive in and explore the possibilities! 🚀",
+            "🌟 **Welcome to Lentil-JSX!** 🚀\n\nLet's take a quick tour of our amazing application, but don't worry, I'll keep it simple for you!\n\n📦 **No Imports Needed:** You don't need to import `React` or `ReactDOM` into your code cells because we've got you covered! Importing them again won't hurt, though. Esbuild is smart enough not to load `'react'` if it's already been loaded.\n\n🎨 **Interactive Code Cells:** Take a look at the code cell below where we import `'react'` and `'react-chartjs-2'` to create a simple yet effective Bar and Line charts.\n\n🤝 **Cumulative Code Sharing:** With Lentil-JSX, you can enjoy cumulative code-sharing, allowing you to access components and declarations from previous code cells effortlessly!\n\nLet's dive in and explore the possibilities! 🚀",
           type: "text",
           id: ".demo0000",
         },
