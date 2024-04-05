@@ -65,9 +65,9 @@ export default {
 
 const Documentation: React.FC = () => {
   return (
-    <div className="mt-12 mb-12">
+    <div className="mt-12 pb-12">
       <div className="container">
-        <MDEditor.Markdown source={markdown} />
+          <MDEditor.Markdown source={markdown} />
       </div>
     </div>
   );
