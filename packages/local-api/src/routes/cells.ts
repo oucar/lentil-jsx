@@ -58,10 +58,10 @@ export const createCellsRouter = (filename: string, dir: string) => {
 
   router.get("*", (req, res) => {
     console.log("GET /");
-    const indexPath = path.resolve(
-      __dirname,
+    const indexPath = require.resolve(
       "@lentil-jsx/local-client/dist/index.html"
     );
+
     res.sendFile(indexPath);
   });
 
