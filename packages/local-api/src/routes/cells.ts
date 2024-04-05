@@ -57,8 +57,9 @@ export const createCellsRouter = (filename: string, dir: string) => {
 
   // Catch-all route to serve React's index.html for client-side routing
   router.get("*", (req, res) => {
-    console.log("OTHER!!");
+    console.log("OTHER but new version!");
     const indexPath = path.resolve(__dirname, "index.html");
+    console.log(indexPath);
     res.sendFile(indexPath);
   });
 
