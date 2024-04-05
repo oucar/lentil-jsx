@@ -32,7 +32,7 @@ export const serve = (
     // serve up built files from @lentil-jsx/local-client/dist --> @lentil-jsx/local-api/node_modules
     // as local-client is a dependency of local-api
   } else {
-    console.log("Serving local-client from local-api");
+    console.log("Serving local-client from local-api!");
     const packagePath = require.resolve(
       "@lentil-jsx/local-client/dist/index.html"
     );
