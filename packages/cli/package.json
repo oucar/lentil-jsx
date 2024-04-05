@@ -1,6 +1,6 @@
 {
   "name": "lentil-jsx",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "description": "",
   "publishConfig": {
     "access": "public"
@@ -23,7 +23,7 @@
     "esbuild": "0.8.26"
   },
   "devDependencies": {
-    "@lentil-jsx/local-api": "^1.0.16",
+    "@lentil-jsx/local-api": "^1.0.17",
     "@types/node": "^20.11.26",
     "commander": "^12.0.0",
     "esbuild": "0.8.26",
