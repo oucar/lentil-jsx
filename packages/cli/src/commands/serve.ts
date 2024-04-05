@@ -13,7 +13,7 @@ interface LocalApiError {
 const handleServeCommand = async (
   filename = "lentil-jsx-notebook.js",
   options: { port: string },
-  content?: string // Optional content parameter
+  content?: string
 ) => {
   const isLocalApiError = (err: any): err is LocalApiError => {
     return typeof err.code === "string";
@@ -98,8 +98,8 @@ export const serveCommand = new Command()
   )
   .option(
     "-p, --port <number>",
-    "Specify the port to run the server on. Default is 4005."
-  )
+    "Specify the port to run the server on. Default is 4005.\n\nUsage:\n$ lentil-jsx serve [filename] [port]\n\nOptions:\n<filename>               Creates a JS file in your system and opens it in the browser.\n                           Make it something unique! Default is 'lentil-jsx-notebook.js.'\n-p, --port <number>      Specifies the port to run the server on. Default is 4005.\n\nExamples:\n$ lentil-jsx serve\n$ lentil-jsx serve my-notebook.js\n$ lentil-jsx serve --port 8080 my-notebook.js\n$ npx lentil-jsx serve\n$ npx lentil-jsx serve my-notebook.js --port 8080"
+  )  
   .action((filename, options) => {
     handleServeCommand(filename, options);
   })
