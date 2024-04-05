@@ -20,12 +20,14 @@
 - When using lerna, do not use yarn or npm to install dependencies. Use lerna add <package-name> to add a dependency to a project.
 - Lerna documentation: https://lerna.js.org/
 - Migrated to Lerna version 8! https://lerna.js.org/docs/legacy-package-management
-- Use `npm i --legacy-peer-deps` (will be fixed later), and then `npm run` to run the application locally.
 - When running from an installed npm package - after installing the package globally, use `npx lentil-jsx serve [options] [command]` or `lentil-jsx serve [options] [command]` directly. 
 - https://www.npmjs.com/org/lentil-jsx
 - `npm run prepublishOnly` needs to be run before publishing the package to npm. This will build the package and create a dist folder.
 - `lerna clean`, `lerna bootstrap`, `npm start`
 - Make sure `dist` folders are removed before running `lerna clean` and `lerna bootstrap`.
+- dependencies: 
+  - cli --> local-api
+  - local-api --> local-client
 
 - Issues that I was not able to reproduce: 
   - Lerna bootstrap removes the "scripts" property from the package.json file, only in @lentil-jsx/local-client. This happened only once consistently, after running `lerna clean` and `lerna bootstrap`. I had to manually copy the "scripts" property from an earlier commit to fix the issue.
