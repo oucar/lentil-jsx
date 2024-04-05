@@ -17,7 +17,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@lentil-jsx/local-client": "^1.0.9"
+    "@lentil-jsx/local-client": "^1.0.9",
+    "esbuild": "0.8.26"
   },
   "devDependencies": {
     "@lentil-jsx/local-api": "^1.0.9",
@@ -26,5 +27,5 @@
     "esbuild": "0.8.26",
     "typescript": "^5.4.2"
   },
-  "gitHead": "43b0eb6f25c08f1e2250009813cc8739a68f2027"
+  "gitHead": "70e5d3f4369a1d7f93006370315b544ab00d3df4"
 }
