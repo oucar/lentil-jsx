@@ -25,6 +25,7 @@
 - https://www.npmjs.com/org/lentil-jsx
 - `npm run prepublishOnly` needs to be run before publishing the package to npm. This will build the package and create a dist folder.
 - `lerna clean`, `lerna bootstrap`, `npm start`
+- Make sure `dist` folders are removed before running `lerna clean` and `lerna bootstrap`.
 
 - Issues that I was not able to reproduce: 
   - Lerna bootstrap removes the "scripts" property from the package.json file, only in @lentil-jsx/local-client. This happened only once consistently, after running `lerna clean` and `lerna bootstrap`. I had to manually copy the "scripts" property from an earlier commit to fix the issue.
