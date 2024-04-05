@@ -22,12 +22,16 @@
 - Migrated to Lerna version 8! https://lerna.js.org/docs/legacy-package-management
 - When running from an installed npm package - after installing the package globally, use `npx lentil-jsx serve [options] [command]` or `lentil-jsx serve [options] [command]` directly. 
 - https://www.npmjs.com/org/lentil-jsx
-- `npm run prepublishOnly` needs to be run before publishing the package to npm. This will build the package and create a dist folder.
-- `lerna clean`, `lerna bootstrap`, `npm start`
-- Make sure `dist` folders are removed before running `lerna clean` and `lerna bootstrap`.
 - dependencies: 
-  - cli --> local-api
-  - local-api --> local-client
+    - cli --> local-api
+    - local-api --> local-client
+  - Below are the steps for setting up the project and getting it ready for production, or deploying it to npm. After following all these steps, a production build of the application can be run directly inside `@lentil-jsx/cli/dist/` using the command `node index.js serve`, or with using the options. This command will be translated into `npx lentil-jsx serve` or `lentil-jsx serve` when the package is installed globally using npm.
+    - Run `lerna clean`
+    - Optionally, `dist` directories can be removed from all packages.
+    - Run `npm i --legacy-peer-deps` in @lentil-jsx/local-client
+    - Run `lerna bootstrap` to install other dependencies and link packages.
+    - Run `npm run prepublishOnly` in @lentil-jsx/local-api
+    - Run `npm run prepublishOnly` in @lentil-jsx/cli
 
 - Issues that I was not able to reproduce: 
   - Lerna bootstrap removes the "scripts" property from the package.json file, only in @lentil-jsx/local-client. This happened only once consistently, after running `lerna clean` and `lerna bootstrap`. I had to manually copy the "scripts" property from an earlier commit to fix the issue.

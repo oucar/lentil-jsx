@@ -12,11 +12,11 @@ export const serve = (
 ) => {
   const app = express();
 
-  app.use("/cells", createCellsRouter(filename, dir));
+  app.use(createCellsRouter(filename, dir));
 
   // if we are in development mode, we want to use the proxy
   if (useProxy) {
-    console.log("Using proxy to redirect requests to local-client... :)");
+    console.log("Using proxy to redirect requests to local-client...");
     // localhost:4005 (by default) -> localhost:5173
     app.use(
       createProxyMiddleware({
@@ -31,7 +31,7 @@ export const serve = (
     // serve up built files from @lentil-jsx/local-client/dist --> @lentil-jsx/local-api/node_modules
     // as local-client is a dependency of local-api
   } else {
-    console.log("Serving local-client from local-api... :)");
+    console.log("Serving local-client from local-api...");
     const packagePath = require.resolve(
       "@lentil-jsx/local-client/dist/index.html"
     );
