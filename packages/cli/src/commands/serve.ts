@@ -67,10 +67,12 @@ const handleServeCommand = async (
     const filePath = path.join(dir, filename);
     fs.writeFileSync(filePath, fileContent);
 
-    const port = options.port ? parseInt(options.port) : 4005;
+    console.log(options);
+    const port = options && options.port ? parseInt(options.port) : 4005;
 
     await serve(port, path.basename(filename), dir, !isProduction);
 
+    console.log(`Created ${filename} in ${dir}!`);
     console.log(
       `Opened ${filename}! Navigate to http://127.0.0.1:${port} to edit the file.`
     );
@@ -101,7 +103,7 @@ export const serveCommand = new Command()
       "                            Default port is 4005.\n"
   )
   .option(
-    "-p, --port <number>",
+    "-p  <number>",
     "Specifies the port to run the server on. Default is 4005."
   )
   .action((filename, options) => {
@@ -117,7 +119,7 @@ export const serveCommand = new Command()
       "      Start the Lentil-JSX server using 'my-notebook.js' as the notebook file."
     );
     console.log("");
-    console.log("  $ lentil-jsx serve --port 8080 my-notebook.js");
+    console.log("  $ lentil-jsx serve --p 8080 my-notebook.js");
     console.log(
       "      Start the Lentil-JSX server on port 8080 using 'my-notebook.js' as the notebook file."
     );
@@ -130,4 +132,3 @@ export const serveCommand = new Command()
       "      Start the Lentil-JSX server on port 8080 using 'my-notebook.js' as the notebook file."
     );
   });
-
