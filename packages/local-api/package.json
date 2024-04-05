@@ -26,9 +26,9 @@
 		"@lentil-jsx/local-client": "^1.2.2",
 		"@types/node": "^20.11.26",
 		"cors": "^2.8.5",
+		"esbuild": "0.8.26",
 		"express": "^4.18.3",
-		"http-proxy-middleware": "^2.0.6",
-		"esbuild": "0.8.26"
+		"http-proxy-middleware": "^2.0.6"
 	},
-	"gitHead": "f1ae1c36cb6111b6bd292c2f5ea87400add0ea31"
+	"gitHead": "135d06225a59b52ac5cd9aaac929f3aa5e6b8860"
 }
