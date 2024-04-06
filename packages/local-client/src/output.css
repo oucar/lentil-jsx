@@ -633,10 +633,6 @@ video {
   pointer-events: none;
 }
 
-.fixed {
-  position: fixed;
-}
-
 .absolute {
   position: absolute;
 }
@@ -712,10 +708,6 @@ video {
 
 .flex {
   display: flex;
-}
-
-.contents {
-  display: contents;
 }
 
 .aspect-square {

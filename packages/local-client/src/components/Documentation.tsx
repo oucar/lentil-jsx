@@ -3,67 +3,91 @@ import MDEditor from "@uiw/react-md-editor";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
-const markdown = `# React + TypeScript + Vite
-- A CLI to launch an interactive development environment for writing and documenting code.
-- A user will be able to use the CLI to launch an interactive development environment inside their browser.
-- Users will be able to share their code with others by sharing a URL that points to the interactive development environment.
-- A copy of their works can also be saved to their local machine.
-- Users can choose different themes for their code.
-- Supports js, ts, jsx and tsx files.
-- Redux for global state management
-- babeljs.io & codepen.io for inspiration
-- Javascript modules: file that makes some values available to other modules. It does this by exporting them and then importing them into other modules. Can import and export multiple values.
-- Transpiling: converting code from one language to another. Babel is a popular transpiler for JavaScript.
-- Bundler: read the contents of the entry file, then recursively read the contents of all the files that are imported by the entry file, then read the contents of all the files that are imported by those files, and so on, until it has a complete list of all the files that are needed by the application. Then it combines all of those files into a single file, which is the bundle.
-- Transpiling locally: the code is transpiled on the client's machine. Faster code execution, but slower initial load time. No need to maintain an API server. Less complexity!! What I'll be using. (explain further in the future)
-- Raw User Code --> ESBuild (Replaces what Babel and Webpack do) --> Bundle --> Browser: https://esbuild.github.io/ - 100x faster than Webpack and Babel. EsBuild uses Go.
-- Once files are downloaded to the cache, they don't need to be downloaded again, unless the user wants to reset his development environment for some reason. The cache is stored in the browser's local storage. 
-- Will be using IFrames, so that the user's code doesn't interfere with the code of the development environment. A great way to isolate the user's code from the development environment's code! (Different domains, different access to the DOM)
-- Reload iframe sandbox='' --> users cannot reach localStorage, cookies and parent window.
-- Using Monaco Editor for web-based code editing. https://microsoft.github.io/monaco-editor/
-- Each project can specify another as dependency. (Lerna CLI - similar to Yarn and NPM workspaces)
-- When using lerna, do not use yarn or npm to install dependencies. Use lerna add <package-name> to add a dependency to a project.
-- Lerna documentation: https://lerna.js.org/
-- Migrated to Lerna version 8! https://lerna.js.org/docs/legacy-package-management
-- Use \`npm i --legacy-peer-deps\` (will be fixed later), and then \`npm run\` to run the application locally.
-- When running from an installed npm package - after installing the package globally, use \`npx lentil-jsx serve [options] [command]\` or \`lentil-jsx serve [options] [command]\` directly. 
-- https://www.npmjs.com/org/lentil-jsx
-- \`npm run prepublishOnly\` needs to be run before publishing the package to npm. This will build the package and create a dist folder.
-- \`lerna clean\`, \`lerna bootstrap\`, \`npm start\`
+const markdown = `
+# Lentil-jsx 
+- [lentil-jsx npm](https://www.npmjs.com/org/lentil-jsx)
 
-- Issues that I was not able to reproduce: 
-  - Lerna bootstrap removes the "scripts" property from the package.json file, only in @lentil-jsx/local-client. This happened only once consistently, after running \`lerna clean\` and \`lerna bootstrap\`. I had to manually copy the "scripts" property from an earlier commit to fix the issue.
+Lentil-jsx is a robust npm package, offering a powerful CLI tool meticulously designed for React development. With support for both TypeScript and JavaScript, developers can effortlessly create components, objects, write algorithms, brainstorm, and seamlessly document their code in an interactive environment. Seamlessly blending the capabilities of a code editor and documentation platform, lentil-jsx serves as a dynamic notebook, empowering users to compose and document code effortlessly.
 
-# Brainstorming
-- Mongodb implementation for saving users' code, where users can share their codes and "notebooks" with others. 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Lentil-jsx provides developers with a valuable tool for React development. Built on a reliable foundation and modern technology stack, it ensures seamless compatibility across major browsers. Leveraging Esbuild for bundling user code and its own packages, lentil-jsx guarantees smooth performance and ease of use.
 
-Currently, two official plugins are available:
+Upon installation, lentil-jsx not only delivers its own set of features but also grants access to previously installed npm packages. Each npm package is stored alongside lentil-jsx, enabling developers to harness their entire toolkit with ease.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Inspiration
 
-## Expanding the ESLint configuration
+Lentil-jsx draws inspiration from platforms like [babeljs.io](https://babeljs.io/) and [codepen.io](https://codepen.io/), aiming to provide a user-friendly yet powerful environment for developers to write, document, and share code effortlessly.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Features
+- **Transpiling Locally:** Code is transpiled on the client's machine, offering faster code execution and slower initial load times. No need for maintaining an API server, resulting in reduced complexity.
+- **Caching:** NPM packages are cached locally, eliminating the need for repeated downloads and enhancing performance. Cached files are stored in the browser's local storage.
+- **Raw User Code:** User code is processed using Babel and Webpack, traditionally responsible for transpiling and bundling code. However, in lentil-jsx, these functionalities are replaced by ESBuild for significantly faster bundling speeds, up to 100x faster than Webpack and Babel combined. ESBuild, written in Go, ensures efficient code bundling and optimization before delivering the bundle to the browser. For more information on ESBuild, visit [ESBuild's official website](https://esbuild.github.io/).
+- **Concurrent Usage:** Multiple lentil-jsx instances can be run simultaneously using different ports, enabling users to work on multiple projects concurrently. Each instance is isolated from the others, ensuring a secure and interference-free coding experience.
 
-- Configure the top-level \`parserOptions\` property like this:
 
-\`\`\`js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-\`\`\`
+## Usage
+- When running from an installed npm package - after installing the package globally, use \`lentil-jsx serve [options] [command]\` or \`lentil-jsx serve [options] [command]\` directly. You can always use \`lentil-jsx help\` or \`lentil-jsx serve --help\` for more information.
+- When you first run \`lentil-jsx serve\`, the CLI will create a new notebook file named \`lentil-jsx-notebook.js\` and based on the options you passed (file name, port number, etc.) there will be a console message indicating the file name and port number. The initial notebook will contain some examples to get you started on Lentil-JSX. You can then open the notebook file in your code editor and start writing your code.
+- Moving, updating, creating or deleting the text and/or code cell components automatically saves your progress in the notebook file. Therefore you can always close the notebook and open it later to continue where you left off. In order to open a notebook file, you just need to pass the notebook file name as an argument to the \`lentil-jsx serve\` command.
+- Deleting Lentil-JSX from your machine will delete all the notebook files and the cache. Therefore, it is recommended to back up your notebook files before deleting Lentil-JSX.
+- Below are some usage options: 
+  - \`lentil-jsx serve\` - Start the Lentil-JSX server with default settings.
+  - \`npx lentil-jsx serve\` - Start the Lentil-JSX server with default settings.
+  - \`lentil-jsx serve my-notebook.js\` - Start the Lentil-JSX server using \`my-notebook.js\` as the notebook file.
+  - \`lentil-jsx serve -p 8080 my-notebook.js\` - Start the Lentiil-JSX server on port 8080 using \`my-notebook.js\` as the notebook file.
+  - \`npx lentil-jsx serve my-notebook.js -p 8080\` - Start the Lentil-JSX server on port 8080 using 'my-notebook.js' as the notebook file.
+  - \`lentil-jsx serve -p 8080\` - Start the Lentil-JSX server on port 8080 with the default notebook name.
 
-- Replace \`plugin:@typescript-eslint/recommended\` to \`plugin:@typescript-eslint/recommended-type-checked\` or \`plugin:@typescript-eslint/strict-type-checked\`
-- Optionally add \`plugin:@typescript-eslint/stylistic-type-checked\`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add \`plugin:react/recommended\` & \`plugin:react/jsx-runtime\` to the \`extends\` list`;
+## Technology
+- **Dependency Management:** Adopts the Lerna CLI for managing project dependencies in a monorepo pattern, facilitating efficient development and versioning.
+- **Lerna Migration:** Recently migrated to Lerna version 8, offering improved package management functionalities.
+- **Transpiling:** Code is transpiled from one language to another using Babel, enhancing compatibility and enabling usage of modern syntax.
+- **Bundling:** Utilizes ESBuild to bundle code efficiently, replacing the functionalities of Babel and Webpack. ESBuild offers significantly faster bundling speeds compared to traditional bundlers.
+- **IFrames:** Uses IFrames to isolate user code from the development environment, ensuring a secure and interference-free coding experience.
+- **Monaco Editor:** Integrates the Monaco Editor for web-based code editing, offering powerful features and functionalities.
+- **Global State Management:** Utilizes Redux for efficient global state management.
+- **Language Agnostic:** Supports both JavaScript (JS) and TypeScript (TS), ensuring that any code or component written in lentil-jsx is compatible and ready to be seamlessly integrated into a React project, whether it's JSX or TSX.
+
+![lentil-jsx simple diagram](./lentil-jsx-diagram.svg)
+
+- **Current Package Dependencies:**
+    - \`cli\` --> \`local-api\`
+    - \`local-api\` --> \`local-client\`
+
+- **CLI:**
+  - Starts up the local API
+  - Starts up the local client
+  - Publishes a notebook to the Public API
+- **Local API:**
+  - Serves up the React app
+  - Saves and loads cells from a file, creates notebooks
+- **React App:**
+  - Code editing, previewing, displaying, and bundling
+  - Communicates with the local API 
+  - Makes production assets available to the local API or the public API (for future use)
+
+
+## Setting Up the Project for Production
+
+Below are the steps for setting up the project and getting it ready for production, or deploying it to npm. After following all these steps, a production build of the application can be run directly inside \`@lentil-jsx/cli/dist/\` using the command \`node index.js serve\`, or with using the options. This command will be translated into \`npx lentil-jsx serve\` or \`lentil-jsx serve\` when the package is installed globally using npm.
+
+- Run \`lerna clean\`
+- Optionally, \`dist\` directories can be removed from all packages.
+- Run \`npm i --legacy-peer-deps\` in \`@lentil-jsx/local-client\`
+- If \`@lentil-jsx/local-client\` has any changes, do not forget to run \`npm run build\` for it.
+- If \`@lentil-jsx/local-client\` has any tailwindcss changes, run \`npm run build:css\`.
+- Run \`lerna bootstrap\` to install other dependencies and link packages.
+- Run \`npm run prepublishOnly\` in \`@lentil-jsx/local-api\`
+- Run \`npm run prepublishOnly\` in \`@lentil-jsx/cli\`
+
+
+## Future Ideas?!
+
+- Mongodb implementation for saving users' code, where users can share their codes and "notebooks" with others.
+
+
+## Fun Fact 
+- Lentil-JSX is named after my cat, Lentil, who is always by my side when I am coding. He is a great companion and a source of inspiration for me. He loves eating corn. 🌽
+`;
 
 const Documentation: React.FC = () => {
   const navigate = useNavigate();
