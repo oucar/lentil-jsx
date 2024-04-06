@@ -12,7 +12,7 @@ interface LocalApiError {
 // Function to handle serve command
 const handleServeCommand = async (
   filename = "lentil-jsx-notebook.js",
-  options: { port: string },
+  options: { p?: number },
   content?: string
 ) => {
   const isLocalApiError = (err: any): err is LocalApiError => {
@@ -67,14 +67,21 @@ const handleServeCommand = async (
     const filePath = path.join(dir, filename);
     fs.writeFileSync(filePath, fileContent);
 
-    console.log(options);
-    const port = options && options.port ? parseInt(options.port) : 4005;
+    //node index.js serve onur.js -p 3000
+    // Created onur.js in /Users/onurucar/Desktop/Github/react-cli/react-cli/packages/cli/dist.
+    // Opened onur.js! Navigate to http://127.0.0.1:4005 to edit the file.
+    let portAbbrevation = 'p';
+    let portValue = 4005;
 
-    await serve(port, path.basename(filename), dir, !isProduction);
+    if(portAbbrevation in options){
+      portValue = options.p || portValue;
+    }
 
-    console.log(`Created ${filename} in ${dir}!`);
+    await serve(portValue, path.basename(filename), dir, !isProduction);
+
+    console.log(`Created ${filename} in ${dir}.`);
     console.log(
-      `Opened ${filename}! Navigate to http://127.0.0.1:${port} to edit the file.`
+      `Opened ${filename}! Navigate to http://127.0.0.1:${portValue} to edit the file.`
     );
   } catch (err: any) {
     if (isLocalApiError(err)) {
@@ -92,7 +99,7 @@ const handleServeCommand = async (
 
 // Define the serve command
 export const serveCommand = new Command()
-  .command("serve [filename] [port]")
+  .command("serve [filename]")
   .description(
     "Starts the Lentil-JSX server to host your notebook for editing.\n" +
       "Usage: lentil-jsx serve [filename] [port]\n" +
@@ -106,7 +113,7 @@ export const serveCommand = new Command()
     "-p  <number>",
     "Specifies the port to run the server on. Default is 4005."
   )
-  .action((filename, options) => {
+  .action((filename, options: { p?: number }) => {
     handleServeCommand(filename, options);
   })
   .on("--help", () => {
@@ -119,7 +126,7 @@ export const serveCommand = new Command()
       "      Start the Lentil-JSX server using 'my-notebook.js' as the notebook file."
     );
     console.log("");
-    console.log("  $ lentil-jsx serve --p 8080 my-notebook.js");
+    console.log("  $ lentil-jsx serve -p 8080 my-notebook.js");
     console.log(
       "      Start the Lentil-JSX server on port 8080 using 'my-notebook.js' as the notebook file."
     );
@@ -127,7 +134,7 @@ export const serveCommand = new Command()
     console.log("  $ npx lentil-jsx serve");
     console.log("      Start the Lentil-JSX server using npx.");
     console.log("");
-    console.log("  $ npx lentil-jsx serve my-notebook.js --port 8080");
+    console.log("  $ npx lentil-jsx serve my-notebook.js -p 8080");
     console.log(
       "      Start the Lentil-JSX server on port 8080 using 'my-notebook.js' as the notebook file."
     );

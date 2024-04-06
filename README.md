@@ -30,6 +30,7 @@
     - Optionally, `dist` directories can be removed from all packages.
     - Run `npm i --legacy-peer-deps` in @lentil-jsx/local-client
     - If `@lentil-jsx/local-client` has any changes, do not forget to run `npm run build` for it.
+    - If `@lentil-jsx/local-client` has any tailwindcss changes, run `npm run build:css`.
     - Run `lerna bootstrap` to install other dependencies and link packages.
     - Run `npm run prepublishOnly` in @lentil-jsx/local-api
     - Run `npm run prepublishOnly` in @lentil-jsx/cli

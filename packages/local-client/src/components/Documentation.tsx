@@ -1,5 +1,7 @@
 import React from "react";
 import MDEditor from "@uiw/react-md-editor";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const markdown = `# React + TypeScript + Vite
 - A CLI to launch an interactive development environment for writing and documenting code.
@@ -64,10 +66,26 @@ export default {
 - Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add \`plugin:react/recommended\` & \`plugin:react/jsx-runtime\` to the \`extends\` list`;
 
 const Documentation: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/");
+  };
+
   return (
-    <div className="mt-12 pb-12">
-      <div className="container">
-          <MDEditor.Markdown source={markdown} />
+    <div className="mt-6 pb-12">
+      <motion.button
+        className="container pl-16 inline-block pt-2 pb-2 cursor-pointer bg-[#0f172ae6] hover:bg-blue-950 text-white font-bold py-2 px-4 rounded transition-colors duration-200"
+        whileHover={{ x: -5, scale: 1.0 }}
+        whileTap={{ scale: 1 }}
+        transition={{ type: "spring", stiffness: 200 }}
+        onClick={handleClick}
+      >
+        <i className="fa-solid fa-caret-left fa-2xl" />
+      </motion.button>
+
+      <div className="container pt-4">
+        <MDEditor.Markdown source={markdown} />
       </div>
     </div>
   );
