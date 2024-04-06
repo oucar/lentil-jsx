@@ -1,6 +1,6 @@
 {
   "name": "lentil-jsx",
-  "version": "1.2.22",
+  "version": "1.3.0",
   "description": "",
   "publishConfig": {
     "access": "public"
@@ -17,10 +17,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@lentil-jsx/local-client": "^1.2.22"
+    "@lentil-jsx/local-client": "^1.3.0"
   },
   "devDependencies": {
-    "@lentil-jsx/local-api": "^1.2.22",
+    "@lentil-jsx/local-api": "^1.3.0",
     "@types/node": "^20.11.26",
     "commander": "^12.0.0",
     "esbuild": "0.8.26",
